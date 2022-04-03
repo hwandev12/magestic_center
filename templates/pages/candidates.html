@@ -1,0 +1,7 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>My system users</h2>
+{% for candidate in candid %}
+<a href="/{{ candidate.pk }}/">{{ candidate.name }} <br></a>
+{% endfor %}
+{% endblock content %}

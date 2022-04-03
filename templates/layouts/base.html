@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sidebar 04</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper d-flex align-items-stretch" style="position: relative;z-index: 8; overflow: hidden;">
+      <nav
+        id="sidebar"
+        class="order-last" 
+        class="img"
+        style="background-image: url({% static 'img/bg_1.jpg'%})"
+      >
+        <div class="custom-menu">
+          <button
+            type="button"
+            id="sidebarCollapse"
+            class="btn btn-primary"
+          ></button>
+        </div>
+        <div class="">
+          <h1>
+            <a href="/" class="logo"
+              >Kenitic <span>Blog Agency</span></a
+            >
+          </h1>
+          <ul class="list-unstyled components mb-5">
+            <li class="active">
+              <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
+            </li>
+            <li>
+              <a href="/candidate/"><span class="fa fa-user mr-3"></span>Candidates</a>
+            </li>
+            <li>
+              <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+            </li>
+            <li>
+              <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
+            </li>
+            <li>
+              <a href="#"
+                ><span class="fa fa-paper-plane mr-3"></span> Contacts</a
+              >
+            </li>
+          </ul>
+
+          <div class="mb-5 px-4">
+            <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+            <form action="#" class="subscribe-form">
+              <div class="form-group d-flex">
+                <div class="icon"><span class="icon-paper-plane"></span></div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Email Address"
+                />
+              </div>
+            </form>
+          </div>
+
+          <div class="footer px-4">
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | This template is made with
+              <i class="icon-heart" aria-hidden="true"></i> by
+              <a href="/">Me</a>
+            </p>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        {% block content %} 
+        {% endblock content %}
+      </div>
+    </div>
+    {% include 'layouts/footer.html' %}
+
+    
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
