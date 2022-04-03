@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 class="text-center">Register as new user</h2>
+<form method="post" class="w-50 mx-auto">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>
+{% endblock content %}

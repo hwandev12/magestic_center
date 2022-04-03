@@ -1,9 +1,11 @@
 from unicodedata import name
 from django.urls import path
-from .views import candidate_details, candidate, home
+from .views import *
 
 urlpatterns = [
     path('', home, name='home'),
     path('<int:pk>/', candidate_details),
-    path('candidate/', candidate)
+    path('<int:pk>/update/', update_candidate),
+    path('candidate/', candidate, name='candidate'),
+    path('signup/', register, name='register')
 ]

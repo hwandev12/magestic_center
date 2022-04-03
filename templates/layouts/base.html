@@ -25,11 +25,11 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
   <body style="font-family: 'Mulish', sans-serif;">
-    <div class="wrapper d-flex align-items-stretch" style="position: relative;z-index: 8; overflow: hidden;">
+    <div class="wrapper d-flex align-items-stretch" style="position: absolute; z-index: 8; overflow: hidden;">
       <nav
         id="sidebar"
         class="order-last img" 
-        style="background-image: url({% static 'img/bg_1.jpg'%})"
+        style="background-image: url({% static 'img/bg_1.jpg'%});"
       >
         <div class="custom-menu">
           <button
@@ -52,7 +52,7 @@
               <a href="/candidate/"><span class="fa fa-user mr-3"></span>Candidates</a>
             </li>
             <li>
-              <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+              <a href="/signup/"><span class="fa fa-sticky-note mr-3"></span>Register</a>
             </li>
             <li>
               <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
@@ -93,7 +93,7 @@
       </nav>
 
       <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5">
+      <div id="content">
         {% block content %} 
         {% endblock content %}
       </div>
