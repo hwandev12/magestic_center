@@ -1,7 +1,22 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
+<style>
+    .wrapper-name {
+        border: 1px solid #ddd;
+        padding: 20px;
+    }
+    .name {
+        padding: 20px 20px;
+        background-color: #ddd ;
+        width: 100%;
+        display: block;
+        margin-top: 10px;
+    }
+</style>
 <h2>My system users</h2>
-{% for candidate in candid %}
-<a href="/{{ candidate.pk }}/">{{ candidate.name }} <br></a>
-{% endfor %}
+<div class="wrapper-name">
+    {% for candidate in candid %}
+    <a class="name" href="/{{ candidate.pk }}/">{{ candidate.name }} <br></a>
+    {% endfor %}
+</div>
 {% endblock content %}
