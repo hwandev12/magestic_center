@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h2 class="text-center">Edit your info ({{ candidate.name }} {{ candidate.lastName }})</h2>
+<h2 class="text-center">Edit Page</h2>
 <form method="post" class="w-50 mx-auto">
     {% csrf_token %}
     {{ form|crispy }}

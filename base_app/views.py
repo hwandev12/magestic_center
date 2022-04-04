@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from . import models
 from .models import Candidate
 from django.shortcuts import get_object_or_404
-from .form import RegisterForm
+from .form import *
 
 
 def home(request):
@@ -23,30 +23,28 @@ def candidate_details(request, pk):
 
 
 def register(request):
-    form = RegisterForm()
+    form = MainRegister()
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = MainRegister(request.POST)
         if form.is_valid():
             form.save()
-            name = form.cleaned_data['name']
-            lastName = form.cleaned_data['lastName']
-            age = form.cleaned_data['age']
-            email = form.cleaned_data['email']
-            job = form.cleaned_data['job']
-            agent = models.Agent.objects.first()
-            models.Candidate.objects.create(name=name,
-                                            lastName=lastName,
-                                            age=age,
-                                            email=email,
-                                            job=job,
-                                            agent=agent)
             return redirect('/')
     context = {"form": form}
     return render(request, 'pages/register.html', context)
 
+
 def update_candidate(request, pk):
-    candidate = Candidate.objects.get(id=pk)
-    context = {
-        "candidate": candidate
-    }
+    candidate = models.Candidate.objects.get(id=pk)
+    form = MainRegister(instance=candidate)
+    if request.method == 'POST':
+        form = MainRegister(request.POST, instance=candidate)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {"candidate": candidate, "form": form}
     return render(request, 'pages/update.html', context)
+
+def delete_candidate(request, pk):
+    candidate = models.Candidate.objects.get(id=pk)
+    candidate.delete()
+    return redirect('/')
