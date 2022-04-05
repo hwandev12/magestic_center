@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
+<title>{% block title %}Candidates{% endblock title %}</title>
 <style>
     .wrapper-name {
         border: 1px solid #ddd;
@@ -15,8 +16,8 @@
 </style>
 <h2>My system users</h2>
 <div class="wrapper-name">
-    {% for candidate in candid %}
-    <a class="name" href="/{{ candidate.pk }}/">{{ candidate.name }} <br></a>
+    {% for candidate in candid %}    
+    <a class="name" href="{% url 'candidate:details' candidate.pk %}">{{ candidate.name }} <br></a>
     {% endfor %}
 </div>
 {% endblock content %}

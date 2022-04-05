@@ -1,50 +1,51 @@
 from multiprocessing import context
-from django.shortcuts import redirect, render
+from re import template
+from django.shortcuts import redirect, render, reverse
 from . import models
 from .models import Candidate
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
 from .form import *
 
 
-def home(request):
-    return render(request, 'pages/main.html')
+class BaseView(TemplateView):
+    template_name = 'pages/main.html'
+    
+    
+class Candidate_lists(ListView):
+    template_name = 'pages/candidates.html'
+    queryset = Candidate.objects.all()
+    context_object_name = 'candid'
+    
+class Candidate_details(DetailView):
+    template_name = 'details/candidate_details.html'
+    queryset = Candidate.objects.all()
+    context_object_name = 'candid'
+    
+class Register(CreateView):
+    template_name = 'pages/register.html'
+    form_class = MainRegister
+    
+    def get_success_url(self):
+        return reverse('candidate:candidate')
+    
+class Update_candidate(UpdateView):
+    template_name = 'pages/update.html'
+    form_class = MainRegister
+    queryset = models.Candidate.objects.all()
+    context_object_name = 'candidate'
+    
+    def get_success_url(self):
+        return reverse('candidate:candidate')
 
-
-def candidate(request):
-    candid = Candidate.objects.all()
-    context = {"candid": candid}
-    return render(request, 'pages/candidates.html', context)
-
-
-def candidate_details(request, pk):
-    candid = get_object_or_404(models.Candidate, id=pk)
-    context = {"candid": candid}
-    return render(request, 'details/candidate_details.html', context)
-
-
-def register(request):
-    form = MainRegister()
-    if request.method == 'POST':
-        form = MainRegister(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {"form": form}
-    return render(request, 'pages/register.html', context)
-
-
-def update_candidate(request, pk):
-    candidate = models.Candidate.objects.get(id=pk)
-    form = MainRegister(instance=candidate)
-    if request.method == 'POST':
-        form = MainRegister(request.POST, instance=candidate)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {"candidate": candidate, "form": form}
-    return render(request, 'pages/update.html', context)
-
-def delete_candidate(request, pk):
-    candidate = models.Candidate.objects.get(id=pk)
-    candidate.delete()
-    return redirect('/')
+class Delete_candidate(DeleteView):
+    template_name = 'pages/candidate_confirm_delete.html'
+    form_class = MainRegister
+    queryset = models.Candidate.objects.all()
+    
+    def get_success_url(self): 
+        return reverse('candidate:deleted')
+    
+class Deleted(ListView):
+    template_name = 'pages/deleted.html'
+    queryset = models.Candidate.objects.all()

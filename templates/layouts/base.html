@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Sidebar 04</title>
+    <title>Magestic - {% block title %}{% endblock title %}</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -18,9 +18,10 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
@@ -49,10 +50,10 @@
               <a href="/"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
             <li>
-              <a href="/candidate/"><span class="fa fa-user mr-3"></span>Candidates</a>
+              <a href="{% url 'candidate:candidate' %}"><span class="fa fa-user mr-3"></span>Candidates</a>
             </li>
             <li>
-              <a href="/signup/"><span class="fa fa-sticky-note mr-3"></span>Register</a>
+              <a href="{% url 'candidate:register' %}"><span class="fa fa-sticky-note mr-3"></span>Register</a>
             </li>
             <li>
               <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
@@ -67,7 +68,7 @@
           <div class="mb-5 px-4">
             <h3 class="h6 mb-3">Subscribe for newsletter</h3>
             <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
+              <div class="form-group d-flex"> 
                 <div class="icon"><span class="icon-paper-plane"></span></div>
                 <input
                   type="text"

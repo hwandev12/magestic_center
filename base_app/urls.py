@@ -2,11 +2,13 @@ from unicodedata import name
 from django.urls import path
 from .views import *
 
+app_name = 'candidate'
+
 urlpatterns = [
-    path('', home, name='home'),
-    path('<int:pk>/', candidate_details),
-    path('<int:pk>/update/', update_candidate),
-    path('<int:pk>/delete/', delete_candidate),
-    path('candidate/', candidate, name='candidate'),
-    path('signup/', register, name='register')
+    path('<int:pk>/', Candidate_details.as_view(), name='details'),
+    path('<int:pk>/update/', Update_candidate.as_view(), name='update_info'),
+    path('<int:pk>/delete/', Delete_candidate.as_view(), name='delete_info'),
+    path('candidate/', Candidate_lists.as_view(), name='candidate'),
+    path('signup/', Register.as_view(), name='register'),
+    path('/deleted', Deleted.as_view(), name='deleted') 
 ]

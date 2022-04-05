@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
+<title>{% block title %}Candidate details{% endblock title %}</title>
 <style>
 .darken-grey-text {
     color: #2E2E2E;
@@ -72,8 +73,8 @@
   
       </div>
       <div class="d-flex justify-content-between w-75 mx-auto">
-        <a class="btn btn-primary w-50" href="/{{ candid.pk }}/update/">Update</a>
-        <a class="btn btn-primary w-50 mx-5" href="/{{ candid.pk }}/delete/">Delete</a>
+        <a class="btn btn-primary w-50" href="{% url 'candidate:update_info' candid.pk %}">Update</a>
+        <a class="btn btn-primary w-50 mx-5" href="{% url 'candidate:delete_info' candid.pk %}">Delete</a>
       </div>
-    </main>
+    </main>  
 {% endblock content %}
