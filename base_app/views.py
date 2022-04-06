@@ -23,7 +23,7 @@ class Candidate_details(DetailView):
     context_object_name = 'candid'
     
 class Register(CreateView):
-    template_name = 'pages/register.html'
+    template_name = 'pages/candid_create.html'
     form_class = MainRegister
     
     def get_success_url(self):
@@ -40,7 +40,6 @@ class Update_candidate(UpdateView):
 
 class Delete_candidate(DeleteView):
     template_name = 'pages/candidate_confirm_delete.html'
-    form_class = MainRegister
     queryset = models.Candidate.objects.all()
     
     def get_success_url(self): 

@@ -73,8 +73,8 @@
   
       </div>
       <div class="d-flex justify-content-between w-75 mx-auto">
-        <a class="btn btn-primary w-50" href="{% url 'candidate:update_info' candid.pk %}">Update</a>
-        <a class="btn btn-primary w-50 mx-5" href="{% url 'candidate:delete_info' candid.pk %}">Delete</a>
+        <a class="btn btn-primary w-50" href="{% url 'candidate:update' candid.pk %}">Update</a>
+        <a class="btn btn-primary w-50 mx-5" href="{% url 'candidate:delete' candid.pk %}">Delete</a>
       </div>
     </main>  
 {% endblock content %}
