@@ -8,6 +8,14 @@ from django.shortcuts import get_object_or_404
 from .form import *
 
 
+
+class SignupView(CreateView):
+    template_name = 'registration/signup.html'
+    form_class = NewUserForm
+    
+    def get_success_url(self):
+        return reverse('candidate:candidate')
+
 class BaseView(TemplateView):
     template_name = 'pages/main.html'
     
@@ -22,7 +30,7 @@ class Candidate_details(DetailView):
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Register(CreateView):
+class Candidate_create(CreateView):
     template_name = 'pages/candid_create.html'
     form_class = MainRegister
     

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from base_app.views import BaseView
+from base_app.views import BaseView, SignupView
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('', BaseView.as_view(), name='home'),
     path('', include('base_app.urls')),
     path('login/', LoginView.as_view(), name='login'),
+    path('register/', SignupView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout')
 ]

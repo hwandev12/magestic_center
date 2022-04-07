@@ -48,7 +48,7 @@
           </a>
           {% endif %}
           {% if not request.user.is_authenticated %}
-          <a href="/" class="btn btn-primary px-3 me-2">
+          <a href="{% url 'register' %}" class="btn btn-primary px-3 me-2">
             Register
           </a>   
           {% endif %}
