@@ -2,6 +2,7 @@ from multiprocessing import context
 from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Candidate
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
@@ -20,24 +21,24 @@ class BaseView(TemplateView):
     template_name = 'pages/main.html'
     
     
-class Candidate_lists(ListView):
+class Candidate_lists(LoginRequiredMixin ,ListView):
     template_name = 'pages/candidates.html'
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Candidate_details(DetailView):
+class Candidate_details(LoginRequiredMixin, DetailView):
     template_name = 'details/candidate_details.html'
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Candidate_create(CreateView):
+class Candidate_create(LoginRequiredMixin, CreateView):
     template_name = 'pages/candid_create.html'
     form_class = MainRegister
     
     def get_success_url(self):
         return reverse('candidate:candidate')
     
-class Update_candidate(UpdateView):
+class Update_candidate(LoginRequiredMixin, UpdateView):
     template_name = 'pages/update.html'
     form_class = MainRegister
     queryset = models.Candidate.objects.all()
@@ -46,13 +47,13 @@ class Update_candidate(UpdateView):
     def get_success_url(self):
         return reverse('candidate:candidate')
 
-class Delete_candidate(DeleteView):
+class Delete_candidate(LoginRequiredMixin, DeleteView):
     template_name = 'pages/candidate_confirm_delete.html'
     queryset = models.Candidate.objects.all()
     
     def get_success_url(self): 
         return reverse('candidate:deleted')
     
-class Deleted(ListView):
+class Deleted(LoginRequiredMixin, ListView):
     template_name = 'pages/deleted.html'
     queryset = models.Candidate.objects.all()
