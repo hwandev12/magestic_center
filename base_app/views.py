@@ -7,6 +7,7 @@ from .models import Candidate
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
 from .form import *
+from agents.mixins import OrganiserAndLoginRequiredMixin
 
 
 
@@ -26,19 +27,19 @@ class Candidate_lists(LoginRequiredMixin ,ListView):
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Candidate_details(LoginRequiredMixin, DetailView):
+class Candidate_details(OrganiserAndLoginRequiredMixin, DetailView):
     template_name = 'details/candidate_details.html'
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Candidate_create(LoginRequiredMixin, CreateView):
+class Candidate_create(OrganiserAndLoginRequiredMixin, CreateView):
     template_name = 'pages/candid_create.html'
     form_class = MainRegister
     
     def get_success_url(self):
         return reverse('candidate:candidate')
     
-class Update_candidate(LoginRequiredMixin, UpdateView):
+class Update_candidate(OrganiserAndLoginRequiredMixin, UpdateView):
     template_name = 'pages/update.html'
     form_class = MainRegister
     queryset = models.Candidate.objects.all()
@@ -47,13 +48,13 @@ class Update_candidate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('candidate:candidate')
 
-class Delete_candidate(LoginRequiredMixin, DeleteView):
+class Delete_candidate(OrganiserAndLoginRequiredMixin, DeleteView):
     template_name = 'pages/candidate_confirm_delete.html'
     queryset = models.Candidate.objects.all()
     
     def get_success_url(self): 
         return reverse('candidate:deleted')
     
-class Deleted(LoginRequiredMixin, ListView):
+class Deleted(OrganiserAndLoginRequiredMixin, ListView):
     template_name = 'pages/deleted.html'
     queryset = models.Candidate.objects.all()

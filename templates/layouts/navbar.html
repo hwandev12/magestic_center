@@ -39,14 +39,16 @@
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'candidate:candidate' %}">Candidate</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'candidate:create' %}">Create</a>
+          </li>
+          {% if request.user.is_organiser %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'candidate:candidate' %}">Candidate</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'agents:agent-list' %}">Agents</a>
           </li>
+          {% endif %}
         </ul>
         <!-- Left links -->
   
