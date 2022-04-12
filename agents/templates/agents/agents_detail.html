@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<title>{% block title %}Candidate details{% endblock title %}</title>
+<style>
+.darken-grey-text {
+    color: #2E2E2E;
+}
+.input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input.purple-border {
+    border: 1px solid #9e9e9e;
+}
+.input-group.md-form.form-sm.form-2 input[type=text]:focus:not([readonly]).purple-border {
+    border: 1px solid #ba68c8;
+    box-shadow: none;
+}
+.form-2 .input-group-addon {
+    border: 1px solid #ba68c8;
+}
+.danger-text {
+    color: #ff3547; 
+}  
+.success-text {
+    color: #00C851; 
+}
+.table-bordered.red-border, .table-bordered.red-border th, .table-bordered.red-border td {
+    border: 1px solid #ff3547!important;
+}        
+.table.table-bordered th {
+    text-align: center;
+}
+</style>
+
+    <main class="hm-gradient">
+  
+      <!--MDB Tables-->
+      <div class="container mt-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <!--Table-->
+            <table class="table table-hover">
+              <!--Table head-->
+              <thead class="mdb-color darken-3">
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <!--Table head-->
+              <!--Table body-->
+              <tbody>
+                <tr>
+                  <th scope="row">{{ agent.id }}</th>
+                  <td>{{ agent.user.username }}</td>
+                </tr>
+              </tbody>
+              <!--Table body-->
+            </table>
+            <!--Table-->
+          </div>
+        </div>
+  
+      </div>
+      <div class="d-flex justify-content-between w-75 mx-auto">
+        <a class="btn btn-primary w-50" href="{% url 'agents:agent-update' agent.pk %}">Update</a>
+        <a class="btn btn-primary w-50 mx-5" href="{% url 'agents:agent-delete' agent.pk %}">Delete</a>
+      </div>
+    </main>  
+{% endblock content %}

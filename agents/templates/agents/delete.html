@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<title>{% block title %}Delete{% endblock title %}</title>
+<h2 class="my-5 text-center">Are you sure to delete</h2>
+<div class="wrapper-name">
+    <form method="post" class="w-50 mx-auto">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary w-100">Delete</button>
+    </form>
+</div>
+{% endblock content %}

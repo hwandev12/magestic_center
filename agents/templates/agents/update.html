@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<title>{% block title %}Update details{% endblock title %}</title>
+<h2 class="text-center">Agent Edit Page</h2>
+<form method="post" class="w-50 mx-auto">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>
+{% endblock content %}
