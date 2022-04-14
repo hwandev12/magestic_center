@@ -1,4 +1,5 @@
 from calendar import c
+from typing import Tuple
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
@@ -23,7 +24,8 @@ class Candidate(models.Model):
     age = models.IntegerField(default=0)
     email = models.EmailField()
     job = models.CharField(max_length=20)
-    agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
+    organiser = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    agent = models.ForeignKey("Agent", null=True, blank=True, on_delete=models.SET_NULL)
     
     def __str__(self):
         return self.name
