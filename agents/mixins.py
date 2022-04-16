@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.contrib.auth.mixins import AccessMixin
 
 class OrganiserAndLoginRequiredMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):

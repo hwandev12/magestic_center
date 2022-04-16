@@ -3,7 +3,7 @@ from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Agent, Candidate
+from .models import Candidate
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
 from .form import *
@@ -39,9 +39,15 @@ class Candidate_details(OrganiserAndLoginRequiredMixin, DetailView):
     queryset = Candidate.objects.all()
     context_object_name = 'candid'
     
-class Candidate_create(OrganiserAndLoginRequiredMixin, CreateView):
+class Candidate_create(LoginRequiredMixin, CreateView):
     template_name = 'pages/candid_create.html'
     form_class = MainRegister
+    
+    def form_valid(self, form):
+        lead = form.save(commit=False)
+        lead.organiser = self.request.user.userprofile
+        lead.save()
+        return super(Candidate_create, self).form_valid(form)
     
     def get_success_url(self):
         return reverse('candidate:candidate')
