@@ -6,6 +6,11 @@
     background: linear-gradient(to right, #e8cbc0, #636fa4);
     min-height: 100vh;
   }
+  .work {
+    padding: 30px;
+    background-color: #ddd;
+    margin-top: 10px;
+  }
 
   .social-link {
     width: 30px;
@@ -44,79 +49,25 @@
 <!-- End -->
 
 <div class="container">
-  <div class="row text-center">
-    <!-- Team item -->
-    <div class="col-xl-3 col-sm-6 mb-5">
-      <div class="bg-white rounded shadow-sm py-5 px-4">
-        <img
-          src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg"
-          alt=""
-          width="100"
-          class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-        />
-        {% for candidate in candid %}
-        <h5 class="mb-0">
-          <a class="name" href="{% url 'candidate:details' candidate.pk %}"
-            >{{ candidate.name }}</a
-          >
-        </h5>
-        <span class="small text-uppercase text-muted">{{ candidate.job }}</span>
-        {% endfor %}
-        <ul class="social mb-0 list-inline mt-3">
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- End here -->
-
-    {% if unassigned_candidates.exists %}
-    <div class="col-xl-3 col-sm-6 mb-5">
-      <div class="bg-white rounded shadow-sm py-5 px-4">
-        <img
-        src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg"
-        alt=""
-        width="100"
-        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
-        />
-        {% for can in unassigned_candidates %}
-        <h5 class="mb-0">
-          <a class="name" href="{% url 'candidate:details' can.pk %}"
-            >{{ can.name }}</a
-          >
-        </h5>
-        <span class="small text-uppercase text-muted">{{ can.job }}</span>
-        <ul class="social mb-0 list-inline mt-3">
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
-          </li>
-        </ul>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-    <!-- End -->
-  </div>
+  {% for candidate in candid %}
+   <div class="d-block work">
+    {{ candidate.name }}
+    <a class="d-block" href="{% url 'candidate:details' candidate.pk %}">Details</a>
+    <a class="d-block" href="{% url 'candidate:update' candidate.pk %}">Update</a>
+   </div>
+  {% endfor %}
 </div>
+
+{% if unassigned_candidates.exists %}
+<h1 class="p-4">Unassigned Users</h1>
+<div class="container">
+  {% for candidate in unassigned_candidates %}
+   <div class="d-block work">
+    {{ candidate.name }}
+    <a class="d-block" href="{% url 'candidate:assign_agent' candidate.pk %}">Details</a>
+   </div>
+  {% endfor %}
+</div>
+{% endif %}
 
 {% endblock content %}
