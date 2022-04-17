@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render, reverse
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Candidate
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import *
 from django.shortcuts import get_object_or_404
 from .form import *
 from agents.mixins import OrganiserAndLoginRequiredMixin
@@ -87,3 +87,6 @@ class Delete_candidate(OrganiserAndLoginRequiredMixin, DeleteView):
 class Deleted(OrganiserAndLoginRequiredMixin, ListView):
     template_name = 'pages/deleted.html'
     queryset = models.Candidate.objects.all()
+    
+class AgentAssignView(OrganiserAndLoginRequiredMixin, FormView):
+    template_name = 'pages/agent_find.html'
