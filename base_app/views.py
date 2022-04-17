@@ -90,3 +90,23 @@ class Deleted(OrganiserAndLoginRequiredMixin, ListView):
     
 class AgentAssignView(OrganiserAndLoginRequiredMixin, FormView):
     template_name = 'pages/agent_find.html'
+    form_class = AssignAgentForm
+
+    # Bu qismda agentni tayinlash uchun yozilgan kwargs va qoshimchalar elementlar
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(AgentAssignView, self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            'request': self.request
+        })
+        return kwargs
+
+    def get_success_url(self): 
+        return reverse('candidate:candidate')
+
+    def form_valid(self, form):
+        agent = form.cleaned_data['agent']
+        candidate = Candidate.objects.get(id=self.kwargs['pk'])
+        candidate.agent = agent
+        candidate.save()
+        return super(AgentAssignView, self).form_valid(form)
+    # Bu qismda agentni tayinlash uchun yozilgan kwargs va qoshimchalar elementlar
