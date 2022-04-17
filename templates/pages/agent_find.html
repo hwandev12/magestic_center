@@ -6,6 +6,7 @@
 <div class="wrapper-name">
     <form method="post" class="w-50 mx-auto">
         {% csrf_token %}
+        {{ form | crispy }}
         <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
 </div>
