@@ -34,6 +34,22 @@ class Candidate_lists(LoginRequiredMixin ,ListView):
             queryset = queryset.filter(agent__user = self.request.user)
         return queryset
     
+    # Bu yerda aniqlanmagan agent uchun funksiya yozilgan
+    def get_context_data(self, **kwargs): # Eslab qolish
+        context = super(Candidate_lists, self).get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Candidate.objects.filter(
+                organiser = user.userprofile,
+                agent__isnull = True
+            )
+            context.update({
+                'unassigned_candidates': queryset
+            })
+            return context
+    # Bu yerda aniqlanmagan agent uchun funksiya yozilgan
+    
+    
 class Candidate_details(OrganiserAndLoginRequiredMixin, DetailView):
     template_name = 'details/candidate_details.html'
     queryset = Candidate.objects.all()
