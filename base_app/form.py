@@ -35,10 +35,11 @@ class NewUserForm(UserCreationForm):
 
 # Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma 
 class AssignAgentForm(forms.Form):
-    agent = forms.ModelChoiceField(queryset=Agent.objects.null())
+    agent = forms.ModelChoiceField(queryset=Agent.objects.none())
 
     def __init__(self, *args, **kwargs):
         request = kwargs.pop('request')
         agents = Agent.objects.filter(organiser=request.user.userprofile)
         super(AssignAgentForm, self).__init__(*args, **kwargs)
         self.fields['agent'].queryset = agents
+# Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma 
