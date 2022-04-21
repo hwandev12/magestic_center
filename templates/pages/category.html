@@ -1,0 +1,8 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Category page{% endblock title %}
+
+{% block content %}
+  {% for x in candidates %}
+    <h3>{{ x.category }}</h3>
+  {% endfor %}
+{% endblock content %}
