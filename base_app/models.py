@@ -37,7 +37,13 @@ class Candidate(models.Model):
 
 
 class Category(models.Model):
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'My Category Lists'
     category_name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return str(self.category_name)
 
 
 class Agent(models.Model):
