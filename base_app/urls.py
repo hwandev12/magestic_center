@@ -11,5 +11,6 @@ urlpatterns = [
     path('<int:pk>/assign-agent/', AgentAssignView.as_view(), name='assign_agent'),
     path('candidate/', Candidate_lists.as_view(), name='candidate'),
     path('create/', Candidate_create.as_view(), name='create'),
-    path('/deleted', Deleted.as_view(), name='deleted') 
+    path('deleted/', Deleted.as_view(), name='deleted'),
+    path('category-lists/', CategoryAssignView.as_view(), name='category')
 ]
