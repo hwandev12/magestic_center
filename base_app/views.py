@@ -1,4 +1,3 @@
-from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -133,7 +132,7 @@ class CategoryAssignView(LoginRequiredMixin, ListView):
                 organiser=user.agent.organiser)
         context.update({
             'unassigned_category_quantity': queryset.filter(category__isnull=True).count()
-            })
+        })
         return context
 
     def get_queryset(self):
