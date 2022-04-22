@@ -30,7 +30,7 @@ class Candidate(models.Model):
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(
-        'Category', null=True, blank=True, related_name='leads', on_delete=models.SET_NULL)
+        'Category', null=True, blank=True, related_name='candidates', on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
