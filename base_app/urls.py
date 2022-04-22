@@ -12,5 +12,7 @@ urlpatterns = [
     path('candidate/', Candidate_lists.as_view(), name='candidate'),
     path('create/', Candidate_create.as_view(), name='create'),
     path('deleted/', Deleted.as_view(), name='deleted'),
-    path('category-lists/', CategoryAssignView.as_view(), name='category')
+    path('category-lists/', CategoryAssignView.as_view(), name='category'),
+    path('category-lists/<int:pk>/',
+         AssignCategoryDetailsView.as_view(), name='category_detail'),
 ]
