@@ -158,3 +158,21 @@ class AssignCategoryDetailsView(LoginRequiredMixin, DetailView):
             queryset = Category.objects.filter(
                 organiser=user.agent.organiser)
         return queryset
+
+
+# bu yerda category update qilish uchun yaratilgan
+class CandidateCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'pages/category_update.html'
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Candidate.objects.filter(
+                organiser=user.userprofile)
+        else:
+            queryset = Candidate.objects.filter(
+                organiser=user.agent.organiser)
+        return queryset
+
+        def get_success_url(self):
+            return reverse('candidate:candidate')
