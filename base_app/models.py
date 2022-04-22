@@ -30,7 +30,7 @@ class Candidate(models.Model):
     agent = models.ForeignKey(
         "Agent", null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.SET_NULL)
+        'Category', null=True, blank=True, related_name='leads', on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -41,6 +41,7 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'My Category Lists'
     category_name = models.CharField(max_length=30)
+    organiser = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.category_name)
