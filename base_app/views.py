@@ -1,9 +1,8 @@
-from multiprocessing import context
 from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Candidate
+from .models import Candidate, Category
 from django.views.generic import *
 from django.shortcuts import get_object_or_404
 from .form import *
@@ -120,5 +119,29 @@ class AgentAssignView(OrganiserAndLoginRequiredMixin, FormView):
 
 class CategoryAssignView(LoginRequiredMixin, ListView):
     template_name = 'pages/category.html'
-    queryset = Candidate.objects.all()
     context_object_name = 'candidates'
+
+    def get_context_data(self, **kwargs):  # Eslab qolish
+        context = super(CategoryAssignView, self).get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Candidate.objects.filter(
+                organiser=user.userprofile
+            )
+        else:
+            queryset = Category.objects.filter(
+                organiser=user.agent.organiser)
+        context.update({
+            'unassigned_category_quantity': queryset.filter(category__isnull=True).count()
+            })
+        return context
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Category.objects.filter(
+                organiser=user.userprofile)
+        else:
+            queryset = Category.objects.filter(
+                organiser=user.agent.organiser)
+        return queryset
