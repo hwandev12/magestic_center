@@ -1,8 +1,39 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 {% block title %}Category page{% endblock title %}
 
 {% block content %}
-  {% for x in candidates %}
-    <h3>{{ x.category }}</h3>
-  {% endfor %}
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Categories</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Customers Lists</p>
+    </div>
+    <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+      <table class="table-auto w-full text-left whitespace-no-wrap">
+        <thead>
+          <tr>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Clothes</th>
+            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Number</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="px-4 py-3">Unassigned Customers</td>
+            <td class="px-4 py-3">{{ unassigned_category_quantity }}</td>
+          </tr>
+
+          {% for candidate in candidates %}
+          <tr>
+            <td class="px-4 py-3"><a href="#>{{ candidate.category_name }}</a></td>
+            <td class=" px-4 py-3">Number</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 {% endblock content %}
