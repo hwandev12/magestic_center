@@ -144,3 +144,17 @@ class CategoryAssignView(LoginRequiredMixin, ListView):
             queryset = Category.objects.filter(
                 organiser=user.agent.organiser)
         return queryset
+
+
+class AssignCategoryDetailsView(LoginRequiredMixin, DetailView):
+    template_name = 'details/category_detail.html'
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Category.objects.filter(
+                organiser=user.userprofile)
+        else:
+            queryset = Category.objects.filter(
+                organiser=user.agent.organiser)
+        return queryset
