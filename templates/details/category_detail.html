@@ -21,7 +21,7 @@
 
           {% for candidate in category.candidates.all %}
           <tr>
-            <td class="px-4 py-3">{{ candidate.name }}</td>
+            <td class="px-4 py-3"><a href="{% url 'candidate:category_update' candidate.pk %}">{{ candidate.name }}</a></td>
             <td class="px-4 py-3">Number</td>
           </tr>
           {% endfor %}
