@@ -163,6 +163,7 @@ class AssignCategoryDetailsView(LoginRequiredMixin, DetailView):
 # bu yerda category update qilish uchun yaratilgan
 class CandidateCategoryUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'pages/category_update.html'
+    form_class = LeadCategoryUpdateForm
 
     def get_queryset(self):
         user = self.request.user
@@ -174,5 +175,5 @@ class CandidateCategoryUpdateView(LoginRequiredMixin, UpdateView):
                 organiser=user.agent.organiser)
         return queryset
 
-        def get_success_url(self):
-            return reverse('candidate:candidate')
+    def get_success_url(self):
+        return reverse('candidate:candidate')
