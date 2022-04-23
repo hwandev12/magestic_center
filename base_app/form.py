@@ -8,6 +8,7 @@ from .models import Candidate, Agent
 
 User = get_user_model()
 
+
 class MainRegister(forms.ModelForm):
     class Meta:
         model = Candidate
@@ -27,13 +28,16 @@ class MainRegister(forms.ModelForm):
 #     email = forms.EmailField()
 #     job = forms.CharField(max_length=30)
 
+
 class NewUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username",)
         field_classes = {"username": UsernameField}
 
-# Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma 
+# Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma
+
+
 class AssignAgentForm(forms.Form):
     agent = forms.ModelChoiceField(queryset=Agent.objects.none())
 
@@ -42,4 +46,12 @@ class AssignAgentForm(forms.Form):
         agents = Agent.objects.filter(organiser=request.user.userprofile)
         super(AssignAgentForm, self).__init__(*args, **kwargs)
         self.fields['agent'].queryset = agents
-# Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma 
+# Bu AssignaAgentForm da agenti yo'qni aniqlash va tayinlash uchun forma
+
+
+class LeadCategoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Candidate
+        fields = (
+            'category',
+        )
