@@ -21,21 +21,21 @@
     border: 1px solid #ba68c8;
 }
 .danger-text {
-    color: #ff3547; 
-}  
+    color: #ff3547;
+}
 .success-text {
-    color: #00C851; 
+    color: #00C851;
 }
 .table-bordered.red-border, .table-bordered.red-border th, .table-bordered.red-border td {
     border: 1px solid #ff3547!important;
-}        
+}
 .table.table-bordered th {
     text-align: center;
 }
 </style>
 
     <main class="hm-gradient">
-  
+
       <!--MDB Tables-->
       <div class="container mt-4">
         <div class="card mb-4">
@@ -70,11 +70,12 @@
             <!--Table-->
           </div>
         </div>
-  
+
       </div>
       <div class="d-flex justify-content-between w-75 mx-auto">
         <a class="btn btn-primary w-50" href="{% url 'candidate:update' candid.pk %}">Update</a>
+        <a class="btn btn-primary w-50 ml-5" href="{% url 'candidate:category_update_detail' candid.pk %}">Category</a>
         <a class="btn btn-primary w-50 mx-5" href="{% url 'candidate:delete' candid.pk %}">Delete</a>
       </div>
-    </main>  
+    </main>
 {% endblock content %}
