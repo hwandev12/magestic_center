@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -21,7 +21,7 @@
   <h2>Update</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form|crispy }}
+    {{ form | crispy }}
     <button type="submit" class="btn btn-primary w-100">Submit</button>
   </form>
 </div>
