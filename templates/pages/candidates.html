@@ -51,7 +51,7 @@
 <div class="container">
   {% for candidate in candid %}
    <div class="d-block work">
-    {{ candidate.name }}
+    <h1>{{ candidate.name }}</h1>
     <a class="d-block" href="{% url 'candidate:details' candidate.pk %}">Details</a>
     <a class="d-block" href="{% url 'candidate:update' candidate.pk %}">Update</a>
    </div>
